@@ -1,4 +1,4 @@
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System;
@@ -66,6 +66,38 @@ namespace WeatherProject.StepDefinitions
         {
             driver.Navigate().Back();
         }
+
+        //Scenario 3
+        [Given(@"Homepage should be open")]
+        public void GivenHomepageShouldBeOpen()
+        {
+            h = new homepageclass(driver);
+        }
+
+        [When(@"User able to search city or postal code")]
+        public void WhenUserAbleToSearchCityOrPostalCode()
+        {
+
+            IWebElement selection = driver.FindElement(By.Id("LocationSearch_input"));
+            selection.SendKeys("United");
+            IList<IWebElement> selectionbox = driver.FindElements(By.Id("LocationSearch_listbox-0"));
+            foreach (var selement in selectionbox)
+            {
+                if (selement.Text.Contains("Uşak, Türkiye"))
+                {
+                    selement.Click();
+
+                }
+
+            }
+        }
+
+        [Then(@"City name should be displayed")]
+        public void ThenCityNameShouldBeDisplayed()
+        {
+            Task.Delay(1000).Wait();
+        }
+
 
 
 

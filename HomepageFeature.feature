@@ -14,6 +14,13 @@ Scenario: Check Click function of Times of India button
 	When User able to click Times of India button
 	Then page must be redirected to homepage
 
+@tag2
+Scenario: Check Search function of Search button
+	Given Homepage should be open
+	When User able to search city or postal code
+	Then City name should be displayed
+
+
 
 	
 
